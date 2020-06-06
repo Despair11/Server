@@ -7,12 +7,12 @@
 Jeecg-Boot 快速开发平台（前后端分离版本）
 ===============
 
-当前最新版本： 2.1.3（发布日期：20191226）
+当前最新版本： 2.1.4（发布日期：2020-02-24）
 
 
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/zhangdaiscott/jeecg-boot/blob/master/LICENSE)
 [![](https://img.shields.io/badge/Author-JEECG团队-orange.svg)](http://www.jeecg.com)
-[![](https://img.shields.io/badge/version-2.1.3-brightgreen.svg)](https://github.com/zhangdaiscott/jeecg-boot)
+[![](https://img.shields.io/badge/version-2.1.4-brightgreen.svg)](https://github.com/zhangdaiscott/jeecg-boot)
 [![GitHub stars](https://img.shields.io/github/stars/zhangdaiscott/jeecg-boot.svg?style=social&label=Stars)](https://github.com/zhangdaiscott/jeecg-boot)
 [![GitHub forks](https://img.shields.io/github/forks/zhangdaiscott/jeecg-boot.svg?style=social&label=Fork)](https://github.com/zhangdaiscott/jeecg-boot)
 
@@ -43,7 +43,7 @@ Jeecg-Boot快速开发平台，可以应用在任何J2EE项目的开发中，尤
 
 - 技术官网：  [http://www.jeecg.com](http://www.jeecg.com)
 
-- 开发文档：  [http://doc.jeecg.com/1273753](http://doc.jeecg.com/1273753)
+- 开发文档：  [http://doc.jeecg.com](http://doc.jeecg.com/1273753)
 
 - 视频教程  ：[JeecgBoot入门系列视频](https://space.bilibili.com/454617261/channel/detail?cid=84186)
 
@@ -67,7 +67,7 @@ Jeecg-Boot快速开发平台，可以应用在任何J2EE项目的开发中，尤
 
 为什么选择JEECG-BOOT?
 -----------------------------------
-* 1.采用最新主流前后分离框架（Springboot2+Mybatis+antd），容易上手; 代码生成器依赖性低,灵活的扩展能力，可灵活实现二次开发;
+* 1.采用最新主流前后分离框架（Springboot+Mybatis+antd），容易上手; 代码生成器依赖性低,灵活的扩展能力，可灵活实现二次开发;
 * 2.开发效率很高,采用代码生成器，单表数据模型和一对多(父子表)数据模型，增删改查功能自动生成，菜单配置直接使用；
 * 3.代码生成器提供强大模板机制，支持自定义模板风格。目前提供四套风格模板（单表两套、一对多两套）
 * 4.封装完善的用户、角色、菜单、组织机构、数据字典、在线定时任务等基础功能，支持访问授权、按钮权限、数据权限等功能
@@ -95,7 +95,7 @@ Jeecg-Boot快速开发平台，可以应用在任何J2EE项目的开发中，尤
 * 24.数据变更记录日志，可记录数据每次变更内容，通过版本对比功能查看历史变化
 * 25.平台UI强大，实现了移动自适应
 * 26.平台首页风格，提供多种组合模式，支持自定义风格
-* 27.提供简单易用的打印插件，支持谷歌、IE浏览器等各种浏览器
+* 27.提供简单易用的打印插件，支持谷歌、火狐、IE11+ 等各种浏览器
 * 28.示例代码丰富，提供很多学习案例参考
 * 29.采用maven分模块开发方式
 * 30.支持菜单动态路由

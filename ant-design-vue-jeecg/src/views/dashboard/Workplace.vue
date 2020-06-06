@@ -185,7 +185,7 @@
     },
     created() {
       this.user = this.userInfo
-      this.avatar = window._CONFIG['imgDomainURL'] +"/"+ this.userInfo.avatar
+      this.avatar = window._CONFIG['staticDomainURL'] +"/"+ this.userInfo.avatar
       console.log('this.avatar :'+ this.avatar)
 
       getRoleList().then(res => {
@@ -245,7 +245,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
   .project-list {
 
     .card-title {

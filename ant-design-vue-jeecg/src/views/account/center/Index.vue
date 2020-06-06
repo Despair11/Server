@@ -133,7 +133,7 @@
     methods: {
       ...mapGetters(["nickname", "avatar"]),
       getAvatar(){
-          return window._CONFIG['imgDomainURL']+"/"+this.avatar();
+          return window._CONFIG['staticDomainURL']+"/"+this.avatar();
       },
       getTeams() {
         this.$http.get('/api/workplace/teams')
@@ -180,7 +180,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
   .page-header-wrapper-grid-content-main {
     width: 100%;
     height: 100%;
