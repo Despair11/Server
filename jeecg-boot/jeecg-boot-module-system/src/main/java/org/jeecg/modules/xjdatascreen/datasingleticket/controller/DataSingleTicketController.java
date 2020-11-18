@@ -166,7 +166,7 @@ public class DataSingleTicketController extends JeecgController<DataSingleTicket
 
 
     @ApiOperation(value = "数据导入", notes = "数据导入")
-     @PostMapping("/excelUp")
+    @PostMapping("/excelUp")
      public Result<?> excelUp(@RequestParam("file") MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
         //实例化实现了AnalysisEventListener接口的类

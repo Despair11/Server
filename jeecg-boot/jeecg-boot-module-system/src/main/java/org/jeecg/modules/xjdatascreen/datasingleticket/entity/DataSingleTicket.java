@@ -2,14 +2,12 @@ package org.jeecg.modules.xjdatascreen.datasingleticket.entity;
 
 import java.io.Serializable;
 
-
-import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-
+import org.jeecgframework.poi.excel.annotation.Excel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
@@ -30,72 +28,72 @@ public class DataSingleTicket implements Serializable {
     private static final long serialVersionUID = 1L;
 
 	/**单票订单id*/
-	@ExcelProperty(value = "单票订单id", index = 0)
+	@Excel(name = "订单编号", width = 15)
     @ApiModelProperty(value = "单票订单id")
     @TableId
     private java.lang.String orderId;
 	/**订单渠道*/
-	@ExcelProperty(value = "订单渠道", index = 1)
+	@Excel(name = "订单渠道", width = 15)
     @ApiModelProperty(value = "订单渠道")
     private java.lang.String orderChannel;
 	/**产品名称*/
-	@ExcelProperty(value = "产品名称", index = 2)
+	@Excel(name = "产品名称", width = 15)
     @ApiModelProperty(value = "产品名称")
     private java.lang.String productName;
 	/**票种名称*/
-	@ExcelProperty(value = "票种名称", index = 3)
+	@Excel(name = "票种名称", width = 15)
     @ApiModelProperty(value = "票种名称")
     private java.lang.String ticketName;
 	/**联系人*/
-	@ExcelProperty(value = "联系人", index = 4)
+	@Excel(name = "联系人", width = 15)
     @ApiModelProperty(value = "联系人")
     private java.lang.String contactPerson;
 	/**联系电话*/
-	@ExcelProperty(value = "联系电话", index = 5)
+	@Excel(name = "联系电话", width = 15)
     @ApiModelProperty(value = "联系电话")
     private java.lang.String mobile;
 	/**使用日期*/
-	@ExcelProperty(value = "使用日期", index = 6)
+	@Excel(name = "使用日期", width = 15, format = "yyyy-MM-dd")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "使用日期")
     private java.util.Date useTime;
 	/**订单金额*/
-	@ExcelProperty(value = "订单金额", index = 7)
+	@Excel(name = "订单金额", width = 15)
     @ApiModelProperty(value = "订单金额")
     private java.math.BigDecimal orderPrice;
 	/**购买数量*/
-	@ExcelProperty(value = "购买数量", index = 8)
+	@Excel(name = "购买数量", width = 15)
     @ApiModelProperty(value = "购买数量")
     private java.lang.Integer buyNumber;
 	/**支付方式*/
-	@ExcelProperty(value = "支付方式", index = 9)
+	@Excel(name = "支付方式", width = 15)
     @ApiModelProperty(value = "支付方式")
     private java.lang.String payType;
 	/**订单状态*/
-	@ExcelProperty(value = "订单状态", index = 10)
+	@Excel(name = "订单状态", width = 15)
     @ApiModelProperty(value = "订单状态")
     private java.lang.String orderStatus;
 	/**支付订单*/
-	@ExcelProperty(value = "支付订单", index = 11)
+	@Excel(name = "支付订单", width = 15)
     @ApiModelProperty(value = "支付订单")
     private java.lang.String payOrderId;
 	/**第三方订单号*/
-	@ExcelProperty(value = "第三方订单号", index = 12)
+	@Excel(name = "第三方订单号", width = 15)
     @ApiModelProperty(value = "第三方订单号")
     private java.lang.String thirdOrderId;
 	/**创建人*/
-	@ExcelProperty(value = "创建人", index = 13)
+	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")
     private java.lang.String createBy;
 	/**创建时间*/
-	@ExcelProperty(value = "创建时间", index = 14)
+	@Excel(name = "创建时间", width = 15, format = "yyyy-MM-dd")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "创建时间")
     private java.util.Date createTime;
 	/**更新时间*/
-	@ExcelProperty(value = "更新时间", index = 15)
+	@Excel(name = "更新时间", width = 15, format = "yyyy-MM-dd")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "更新时间")
