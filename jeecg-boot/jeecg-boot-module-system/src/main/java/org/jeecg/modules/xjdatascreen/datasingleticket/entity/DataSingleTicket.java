@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.jeecgframework.poi.excel.annotation.ExcelTarget;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 import io.swagger.annotations.ApiModel;
@@ -23,6 +24,7 @@ import lombok.experimental.Accessors;
 @TableName("data_single_ticket")
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
+@ExcelTarget(value = "dataSingleTicket")
 @ApiModel(value="data_single_ticket对象", description="data_single_ticket")
 public class DataSingleTicket implements Serializable {
     private static final long serialVersionUID = 1L;

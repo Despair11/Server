@@ -103,10 +103,11 @@ public class JeecgController<T, S extends IService<T>> {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-            MultipartFile file = entity.getValue();// 获取上传文件对象
+            // 获取上传文件对象
+            MultipartFile file = entity.getValue();
             ImportParams params = new ImportParams();
-            params.setTitleRows(2);
-            params.setHeadRows(1);
+            params.setTitleRows(0);
+            params.setHeadRows(0);
             params.setNeedSave(true);
             try {
                 List<T> list = ExcelImportUtil.importExcel(file.getInputStream(), clazz, params);
