@@ -32,8 +32,8 @@ public class DataWineShop implements Serializable {
     private static final long serialVersionUID = 1L;
 
 	/**订单id*/
-	@Excel(name = "订单id", width = 15)
-    @ApiModelProperty(value = "订单id")
+	@Excel(name = "订单编号", width = 15)
+    @ApiModelProperty(value = "订单编号")
     private java.lang.String orderId;
 	/**订单渠道*/
 	@Excel(name = "订单渠道", width = 15)

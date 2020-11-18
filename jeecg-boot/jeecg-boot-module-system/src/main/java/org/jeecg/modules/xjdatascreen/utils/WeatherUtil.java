@@ -1,9 +1,6 @@
 package org.jeecg.modules.xjdatascreen.utils;
 
 
-
-
-
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
@@ -96,14 +93,10 @@ public class WeatherUtil {
             map.put("parent_city",jsonData1.getString("parent_city").toString());
             map.put("admin_area",jsonData1.getString("admin_area").toString());
             map.put("cnty",jsonData1.getString("cnty").toString());
-
             String time = jsonData2.getString("loc").toString();
-
             String week = strToDate(time);
-
             map.put("week",week);
             map.put("time",jsonData2.getString("loc").toString());
-
             map.put("tmp",jsonData3.getString("tmp").toString());
             map.put("wind_dir",jsonData3.getString("wind_dir").toString());
             map.put("cond_txt",jsonData3.getString("cond_txt").toString());
@@ -126,9 +119,7 @@ public class WeatherUtil {
                 e.printStackTrace();
             }
         }
-
         return map;
-
     }
 
     /**
@@ -174,9 +165,11 @@ public class WeatherUtil {
 
 
     public static void main(String[] args) throws IOException {
-        Map<String, Object> todayWeather1 = getTodayWeather1("101210101");
+        //哈密编号 101131201
+        //杭州编号 101210101
+        Map<String, Object> todayWeather1 = getTodayWeather1("101131201");
         System.out.println(todayWeather1 + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        Map<String, Object> map2 = getTodayWeather("101210101");
+        Map<String, Object> map2 = getTodayWeather("101131201");
         System.out.println(map2.get("city") + "\t" + map2.get("temp1")
                 + "\t" + map2.get("temp2") + "\t" + map2.get("weather")
                 + "\t" + map2.get("ptime"));
