@@ -121,6 +121,26 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/test/jeecgDemo/html", "anon"); //模板页面
 		filterChainDefinitionMap.put("/test/jeecgDemo/redis/**", "anon"); //redis测试
 
+
+		//测试使用
+		filterChainDefinitionMap.put("/datagcxx/dataGcxx/**", "anon");
+		filterChainDefinitionMap.put("/datagoods/dataGoods/**", "anon");
+		filterChainDefinitionMap.put("/datapackageticket/dataPackageTicket/**", "anon");
+		filterChainDefinitionMap.put("/dataparking/dataParking/**", "anon");
+		filterChainDefinitionMap.put("/datarailwayorder/dataRailwayOrder/**", "anon");
+		filterChainDefinitionMap.put("/dataroom/dataRoom/**", "anon");
+		filterChainDefinitionMap.put("/datasingleticket/dataSingleTicket/**", "anon");
+		filterChainDefinitionMap.put("/datauser/dataUser/**", "anon");
+		filterChainDefinitionMap.put("/datawineshop/dataWineShop/**", "anon");
+
+
+
+
+
+
+
+
+
 		//排除Online请求
 		filterChainDefinitionMap.put("/auto/cgform/**", "anon");
 
