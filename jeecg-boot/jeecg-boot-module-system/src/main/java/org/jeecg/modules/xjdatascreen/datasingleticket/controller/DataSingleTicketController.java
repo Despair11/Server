@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.ExcelReader;
 import org.jeecg.common.api.vo.Result;
-import org.jeecg.modules.xjdatascreen.config.ExcelListener;
+
 import org.jeecg.modules.xjdatascreen.datasingleticket.entity.DataSingleTicket;
 import org.jeecg.modules.xjdatascreen.datasingleticket.service.IDataSingleTicketService;
 
@@ -165,27 +163,27 @@ public class DataSingleTicketController extends JeecgController<DataSingleTicket
     }
 
 
-    @ApiOperation(value = "数据导入", notes = "数据导入")
-    @PostMapping("/excelUp")
-     public Result<?> excelUp(@RequestParam("file") MultipartFile file) throws IOException {
-        InputStream inputStream = file.getInputStream();
-        //实例化实现了AnalysisEventListener接口的类
-        ExcelListener listener = new ExcelListener();
-        //2、读取指定的excel文件
-        EasyExcel.read(inputStream, DataSingleTicket.class, listener).sheet().doRead();
-        //3、获取读取的结果
-        //获取数据
-        List<Object> list = listener.getDatas();
-//        List<DataSingleTicket> dataSingleTickets = new ArrayList<>();
-//        DataSingleTicket dataSingleTicket = new DataSingleTicket();
-        DataSingleTicket dataSingleTicket;
-        //转换数据类型,并插入到数据库
-        for (int i = 0; i < list.size(); i++) {
-            dataSingleTicket = (DataSingleTicket) list.get(i);
-            dataSingleTicketService.save(dataSingleTicket);
-        }
-//        dataSingleTicketService.saveBatch(list);
-        return Result.ok();
-     }
+//    @ApiOperation(value = "数据导入", notes = "数据导入")
+//    @PostMapping("/excelUp")
+//     public Result<?> excelUp(@RequestParam("file") MultipartFile file) throws IOException {
+//        InputStream inputStream = file.getInputStream();
+//        //实例化实现了AnalysisEventListener接口的类
+//        ExcelListener listener = new ExcelListener();
+//        //2、读取指定的excel文件
+//        EasyExcel.read(inputStream, DataSingleTicket.class, listener).sheet().doRead();
+//        //3、获取读取的结果
+//        //获取数据
+//        List<Object> list = listener.getDatas();
+////        List<DataSingleTicket> dataSingleTickets = new ArrayList<>();
+////        DataSingleTicket dataSingleTicket = new DataSingleTicket();
+//        DataSingleTicket dataSingleTicket;
+//        //转换数据类型,并插入到数据库
+//        for (int i = 0; i < list.size(); i++) {
+//            dataSingleTicket = (DataSingleTicket) list.get(i);
+//            dataSingleTicketService.save(dataSingleTicket);
+//        }
+////        dataSingleTicketService.saveBatch(list);
+//        return Result.ok();
+//     }
 
 }
