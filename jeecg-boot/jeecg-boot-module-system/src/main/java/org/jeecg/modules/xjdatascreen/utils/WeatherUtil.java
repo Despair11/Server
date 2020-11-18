@@ -1,6 +1,7 @@
 package org.jeecg.modules.xjdatascreen.utils;
 
 
+import cn.hutool.core.util.IdcardUtil;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
@@ -173,5 +174,15 @@ public class WeatherUtil {
         System.out.println(map2.get("city") + "\t" + map2.get("temp1")
                 + "\t" + map2.get("temp2") + "\t" + map2.get("weather")
                 + "\t" + map2.get("ptime"));
-    }
+
+
+
+        //hutooljar包,根据身份证号判断户籍省份
+        String s = "412326199605180999";
+        String province = IdcardUtil.getProvinceByIdCard(s);//根据身份编号获取户籍省份
+        System.out.println(province);
+   }
+
+
+
 }

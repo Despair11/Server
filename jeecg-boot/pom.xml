@@ -66,6 +66,13 @@
     </properties>
     
 	<dependencies>
+		<!--hutool Jar-->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.3.8</version>
+		</dependency>
+
 
 
 		<!--集成springmvc框架并实现自动配置 -->
