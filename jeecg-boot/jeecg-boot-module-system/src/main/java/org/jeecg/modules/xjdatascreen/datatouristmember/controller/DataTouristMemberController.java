@@ -27,7 +27,7 @@ import org.jeecg.common.aspect.annotation.AutoLog;
  * @Date:   2020-11-19
  * @Version: V1.0
  */
-@Api(tags="data_tourist_member")
+@Api(tags="data_tourist_member_游客管理")
 @RestController
 @RequestMapping("/datatouristmember/dataTouristMember")
 @Slf4j
@@ -35,111 +35,111 @@ public class DataTouristMemberController extends JeecgController<DataTouristMemb
 	@Autowired
 	private IDataTouristMemberService dataTouristMemberService;
 	
-	/**
-	 * 分页列表查询
-	 *
-	 * @param dataTouristMember
-	 * @param pageNo
-	 * @param pageSize
-	 * @param req
-	 * @return
-	 */
-	@AutoLog(value = "data_tourist_member-分页列表查询")
-	@ApiOperation(value="data_tourist_member-分页列表查询", notes="data_tourist_member-分页列表查询")
-	@GetMapping(value = "/list")
-	public Result<?> queryPageList(DataTouristMember dataTouristMember,
-								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
-								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
-								   HttpServletRequest req) {
-		QueryWrapper<DataTouristMember> queryWrapper = QueryGenerator.initQueryWrapper(dataTouristMember, req.getParameterMap());
-		Page<DataTouristMember> page = new Page<DataTouristMember>(pageNo, pageSize);
-		IPage<DataTouristMember> pageList = dataTouristMemberService.page(page, queryWrapper);
-		return Result.ok(pageList);
-	}
-	
-	/**
-	 *   添加
-	 *
-	 * @param dataTouristMember
-	 * @return
-	 */
-	@AutoLog(value = "data_tourist_member-添加")
-	@ApiOperation(value="data_tourist_member-添加", notes="data_tourist_member-添加")
-	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody DataTouristMember dataTouristMember) {
-		dataTouristMemberService.save(dataTouristMember);
-		return Result.ok("添加成功！");
-	}
-	
-	/**
-	 *  编辑
-	 *
-	 * @param dataTouristMember
-	 * @return
-	 */
-	@AutoLog(value = "data_tourist_member-编辑")
-	@ApiOperation(value="data_tourist_member-编辑", notes="data_tourist_member-编辑")
-	@PutMapping(value = "/edit")
-	public Result<?> edit(@RequestBody DataTouristMember dataTouristMember) {
-		dataTouristMemberService.updateById(dataTouristMember);
-		return Result.ok("编辑成功!");
-	}
-	
-	/**
-	 *   通过id删除
-	 *
-	 * @param id
-	 * @return
-	 */
-	@AutoLog(value = "data_tourist_member-通过id删除")
-	@ApiOperation(value="data_tourist_member-通过id删除", notes="data_tourist_member-通过id删除")
-	@DeleteMapping(value = "/delete")
-	public Result<?> delete(@RequestParam(name="id",required=true) String id) {
-		dataTouristMemberService.removeById(id);
-		return Result.ok("删除成功!");
-	}
-	
-	/**
-	 *  批量删除
-	 *
-	 * @param ids
-	 * @return
-	 */
-	@AutoLog(value = "data_tourist_member-批量删除")
-	@ApiOperation(value="data_tourist_member-批量删除", notes="data_tourist_member-批量删除")
-	@DeleteMapping(value = "/deleteBatch")
-	public Result<?> deleteBatch(@RequestParam(name="ids",required=true) String ids) {
-		this.dataTouristMemberService.removeByIds(Arrays.asList(ids.split(",")));
-		return Result.ok("批量删除成功!");
-	}
-	
-	/**
-	 * 通过id查询
-	 *
-	 * @param id
-	 * @return
-	 */
-	@AutoLog(value = "data_tourist_member-通过id查询")
-	@ApiOperation(value="data_tourist_member-通过id查询", notes="data_tourist_member-通过id查询")
-	@GetMapping(value = "/queryById")
-	public Result<?> queryById(@RequestParam(name="id",required=true) String id) {
-		DataTouristMember dataTouristMember = dataTouristMemberService.getById(id);
-		if(dataTouristMember==null) {
-			return Result.error("未找到对应数据");
-		}
-		return Result.ok(dataTouristMember);
-	}
-
-    /**
-    * 导出excel
-    *
-    * @param request
-    * @param dataTouristMember
-    */
-    @RequestMapping(value = "/exportXls")
-    public ModelAndView exportXls(HttpServletRequest request, DataTouristMember dataTouristMember) {
-        return super.exportXls(request, dataTouristMember, DataTouristMember.class, "data_tourist_member");
-    }
+//	/**
+//	 * 分页列表查询
+//	 *
+//	 * @param dataTouristMember
+//	 * @param pageNo
+//	 * @param pageSize
+//	 * @param req
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_tourist_member-分页列表查询")
+//	@ApiOperation(value="data_tourist_member-分页列表查询", notes="data_tourist_member-分页列表查询")
+//	@GetMapping(value = "/list")
+//	public Result<?> queryPageList(DataTouristMember dataTouristMember,
+//								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+//								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+//								   HttpServletRequest req) {
+//		QueryWrapper<DataTouristMember> queryWrapper = QueryGenerator.initQueryWrapper(dataTouristMember, req.getParameterMap());
+//		Page<DataTouristMember> page = new Page<DataTouristMember>(pageNo, pageSize);
+//		IPage<DataTouristMember> pageList = dataTouristMemberService.page(page, queryWrapper);
+//		return Result.ok(pageList);
+//	}
+//
+//	/**
+//	 *   添加
+//	 *
+//	 * @param dataTouristMember
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_tourist_member-添加")
+//	@ApiOperation(value="data_tourist_member-添加", notes="data_tourist_member-添加")
+//	@PostMapping(value = "/add")
+//	public Result<?> add(@RequestBody DataTouristMember dataTouristMember) {
+//		dataTouristMemberService.save(dataTouristMember);
+//		return Result.ok("添加成功！");
+//	}
+//
+//	/**
+//	 *  编辑
+//	 *
+//	 * @param dataTouristMember
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_tourist_member-编辑")
+//	@ApiOperation(value="data_tourist_member-编辑", notes="data_tourist_member-编辑")
+//	@PutMapping(value = "/edit")
+//	public Result<?> edit(@RequestBody DataTouristMember dataTouristMember) {
+//		dataTouristMemberService.updateById(dataTouristMember);
+//		return Result.ok("编辑成功!");
+//	}
+//
+//	/**
+//	 *   通过id删除
+//	 *
+//	 * @param id
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_tourist_member-通过id删除")
+//	@ApiOperation(value="data_tourist_member-通过id删除", notes="data_tourist_member-通过id删除")
+//	@DeleteMapping(value = "/delete")
+//	public Result<?> delete(@RequestParam(name="id",required=true) String id) {
+//		dataTouristMemberService.removeById(id);
+//		return Result.ok("删除成功!");
+//	}
+//
+//	/**
+//	 *  批量删除
+//	 *
+//	 * @param ids
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_tourist_member-批量删除")
+//	@ApiOperation(value="data_tourist_member-批量删除", notes="data_tourist_member-批量删除")
+//	@DeleteMapping(value = "/deleteBatch")
+//	public Result<?> deleteBatch(@RequestParam(name="ids",required=true) String ids) {
+//		this.dataTouristMemberService.removeByIds(Arrays.asList(ids.split(",")));
+//		return Result.ok("批量删除成功!");
+//	}
+//
+//	/**
+//	 * 通过id查询
+//	 *
+//	 * @param id
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_tourist_member-通过id查询")
+//	@ApiOperation(value="data_tourist_member-通过id查询", notes="data_tourist_member-通过id查询")
+//	@GetMapping(value = "/queryById")
+//	public Result<?> queryById(@RequestParam(name="id",required=true) String id) {
+//		DataTouristMember dataTouristMember = dataTouristMemberService.getById(id);
+//		if(dataTouristMember==null) {
+//			return Result.error("未找到对应数据");
+//		}
+//		return Result.ok(dataTouristMember);
+//	}
+//
+//    /**
+//    * 导出excel
+//    *
+//    * @param request
+//    * @param dataTouristMember
+//    */
+//    @RequestMapping(value = "/exportXls")
+//    public ModelAndView exportXls(HttpServletRequest request, DataTouristMember dataTouristMember) {
+//        return super.exportXls(request, dataTouristMember, DataTouristMember.class, "data_tourist_member");
+//    }
 
     /**
       * 通过excel导入数据
@@ -148,6 +148,7 @@ public class DataTouristMemberController extends JeecgController<DataTouristMemb
     * @param response
     * @return
     */
+    @ApiOperation(value = "游客数据导入", notes = "游客数据导入")
     @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, DataTouristMember.class);

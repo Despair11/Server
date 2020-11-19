@@ -1,11 +1,13 @@
 package org.jeecg.modules.xjdatascreen.datawineshop.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.xjdatascreen.datawineshop.entity.DataWineShop;
+import org.jeecg.modules.xjdatascreen.datawineshop.entity.DataWineShopVO;
 import org.jeecg.modules.xjdatascreen.datawineshop.service.IDataWineShopService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -152,6 +154,13 @@ public class DataWineShopController extends JeecgController<DataWineShop, IDataW
     @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, DataWineShop.class);
+    }
+
+    @ApiOperation(value = "酒店入住数据统计", notes = "酒店入住数据统计")
+    @GetMapping("/getWineShop")
+    public Result<?> getWineShop() {
+        List<DataWineShopVO> dataWineShopVOS = dataWineShopService.selectAll();
+        return Result.ok(dataWineShopVOS);
     }
 
 }

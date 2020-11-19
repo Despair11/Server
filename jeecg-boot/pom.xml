@@ -66,13 +66,19 @@
     </properties>
     
 	<dependencies>
+        <!--start-->
 		<!--hutool Jar-->
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
 			<version>5.3.8</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson</artifactId>
+			<version>3.11.4</version>
+		</dependency>
+		<!--End-->
 
 
 		<!--集成springmvc框架并实现自动配置 -->
@@ -126,7 +132,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-		
+
 		<!-- mybatis-plus -->
 		 <dependency>
 	        <groupId>com.baomidou</groupId>

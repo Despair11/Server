@@ -1,6 +1,8 @@
 package org.jeecg.modules.xjdatascreen.datauser.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
@@ -14,6 +16,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 
 import org.jeecg.common.system.base.controller.JeecgController;
+import org.jeecg.modules.xjdatascreen.utils.WeatherUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -87,7 +90,12 @@ public class DataUserController extends JeecgController<DataUser, IDataUserServi
 		return Result.ok("编辑成功!");
 	}
 
-
+	 @ApiOperation(value = "数据大屏获取天气", notes = "数据大屏获取天气")
+	 @GetMapping("/getWeather")
+	 public Result<?> getWeather() throws IOException {
+		 Map<String, Object> weather = WeatherUtil.getTodayWeather1("101131201");
+		 return Result.ok(weather);
+	 }
 
 
 

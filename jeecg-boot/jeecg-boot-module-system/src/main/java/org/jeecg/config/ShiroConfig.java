@@ -132,6 +132,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/datasingleticket/dataSingleTicket/**", "anon");
 		filterChainDefinitionMap.put("/datauser/dataUser/**", "anon");
 		filterChainDefinitionMap.put("/datawineshop/dataWineShop/**", "anon");
+		filterChainDefinitionMap.put("/datatouristmember/dataTouristMember/**", "anon");
 
 
 
