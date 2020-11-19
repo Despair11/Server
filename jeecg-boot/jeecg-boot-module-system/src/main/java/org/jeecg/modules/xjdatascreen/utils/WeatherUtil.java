@@ -176,13 +176,11 @@ public class WeatherUtil {
                 + "\t" + map2.get("ptime"));
 
 
-
         //hutooljar包,根据身份证号判断户籍省份
         String s = "412326199605180999";
         String province = IdcardUtil.getProvinceByIdCard(s);//根据身份编号获取户籍省份
         System.out.println(province);
    }
-
 
 
 }
