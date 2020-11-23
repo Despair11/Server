@@ -10,5 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @Version: V1.0
  */
 public interface IDataParkingService extends IService<DataParking> {
+    //停车场编号:  1122334401
 
 }

@@ -40,7 +40,7 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
     @Override
     public List<DataWineShopVO> selectAll() {
         List<DataWineShopVO> dataWineShopVOS = new ArrayList<>();
-        if(!redisTemplate.hasKey(RedisKeyConfig.wine_shop_key)) {
+        if(! redisTemplate.hasKey(RedisKeyConfig.wine_shop_key)) {
             //获取总的酒店数量
             Integer integer = dataWineShopMapper.selectCount(Wrappers.<DataWineShop>query().lambda()
                     .last("where DATE_FORMAT(create_time, '%Y-%m-%d') = DATE_FORMAT( NOW(), '%Y-%m-%d')"));
