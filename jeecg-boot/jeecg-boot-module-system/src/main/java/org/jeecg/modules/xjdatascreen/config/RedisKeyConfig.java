@@ -8,6 +8,8 @@ package org.jeecg.modules.xjdatascreen.config;
 public class RedisKeyConfig {
     //有效时间
     public static final int effective_time = 24 * 60 *60;
-    //酒店入住率key
+    //酒店相关key
     public static final String wine_shop_key = "wine:shop:key";
+    //游客相关key
+    public static final String tourist_member_key = "tourist:member:key";
 }

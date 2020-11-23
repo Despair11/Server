@@ -11,14 +11,14 @@ import java.text.NumberFormat;
  */
 public class ArithmeticUtil {
 
-//    public static int sum(int a, int b) {
-//        return a + b;
-//    }
-//
-//    public static int sub(int a, int b) {
-//        return a - b;
-//    }
-//
+    public static int sum(int a, int b) {
+        return a + b;
+    }
+
+    public static int sub(int a, int b) {
+        return a - b;
+    }
+
     public static double mul(double a, double b) {
         return a * b;
     }

@@ -65,10 +65,23 @@ public class DateUtil {
         return date;
     }
 
+
+    public static String comDate(int month) {
+        Date date = new Date();//获取当前时间
+        Calendar calendar = Calendar.getInstance();//得到日历
+        calendar.setTime(date);//把当前时间赋给日历
+        calendar.add(Calendar.MONTH, -month);
+        date = calendar.getTime();
+        return new SimpleDateFormat("yyyy-MM").format(date);
+    }
+
     public static void main(String[] args) {
-//        List<String> dates = getDays("2020-08-08", "2020-11-19");
-//        System.out.println(dates.toString());
-        System.out.println(getMouths("2020-01","2020-09"));
+////        List<String> dates = getDays("2020-08-08", "2020-11-19");
+////        System.out.println(dates.toString());
+//        System.out.println(getMouths("2019-11","2020-09"));
+//        System.out.println(comDate(12));
+
+        System.out.println(getMouths(comDate(12), new SimpleDateFormat("yyyy-MM").format(new Date())));
     }
 
 

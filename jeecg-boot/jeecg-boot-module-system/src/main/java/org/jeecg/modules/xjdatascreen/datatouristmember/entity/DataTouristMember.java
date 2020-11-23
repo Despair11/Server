@@ -32,7 +32,8 @@ public class DataTouristMember implements Serializable {
     private static final long serialVersionUID = 1L;
 
 	/**id*/
-	@TableId(type = IdType.ID_WORKER_STR)
+	@TableId(type = IdType.AUTO)
+    @Excel(name = "id", width = 15)
     @ApiModelProperty(value = "id")
     private java.lang.Integer id;
 	/**注册时间*/
@@ -52,8 +53,8 @@ public class DataTouristMember implements Serializable {
     @ApiModelProperty(value = "昵称")
     private java.lang.String nickName;
 	/**身份证号码*/
-	@Excel(name = "身份证号码", width = 15)
-    @ApiModelProperty(value = "身份证号码")
+	@Excel(name = "身份证号", width = 15)
+    @ApiModelProperty(value = "身份证号")
     private java.lang.String cardId;
 	/**性别*/
 	@Excel(name = "性别", width = 15)
@@ -64,7 +65,7 @@ public class DataTouristMember implements Serializable {
     @ApiModelProperty(value = "微信唯一标识")
     private java.lang.String uniqueId;
 	/**注册来源 W-微信 Z-支付宝 H-H5*/
-	@Excel(name = "注册来源 W-微信 Z-支付宝 H-H5", width = 15)
+	@Excel(name = "注册来源", width = 15)
     @ApiModelProperty(value = "注册来源 W-微信 Z-支付宝 H-H5")
     private java.lang.String registeredSource;
 	/**手机号*/

@@ -1,11 +1,13 @@
 package org.jeecg.modules.xjdatascreen.datatouristmember.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.xjdatascreen.datatouristmember.entity.DataTouristMember;
+import org.jeecg.modules.xjdatascreen.datatouristmember.entity.DataTouristMemberVO;
 import org.jeecg.modules.xjdatascreen.datatouristmember.service.IDataTouristMemberService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -152,6 +154,13 @@ public class DataTouristMemberController extends JeecgController<DataTouristMemb
     @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, DataTouristMember.class);
+    }
+
+    @ApiOperation(value = "统计用户数据", notes = "统计用户数据")
+    @GetMapping("/getPeopleData")
+    public Result<?> getPeopleData() {
+        List<DataTouristMemberVO> dataTouristMemberVOS = dataTouristMemberService.selectAll();
+        return Result.ok(dataTouristMemberVOS);
     }
 
 }
