@@ -163,4 +163,12 @@ public class DataTouristMemberController extends JeecgController<DataTouristMemb
         return Result.ok(dataTouristMemberVOS);
     }
 
+
+    @ApiOperation(value = "获取总的国庆节数据", notes = "获取总的国庆节数据")
+     @GetMapping("/getNationalDayData")
+     public Result<?> getNationalDayData() {
+        List<DataTouristMemberVO> dataTouristMemberVOS = dataTouristMemberService.selectNationalDayAll();
+        return Result.ok(dataTouristMemberVOS);
+    }
+
 }

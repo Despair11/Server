@@ -44,7 +44,7 @@ public class DataGoods implements Serializable {
     @ApiModelProperty(value = "产品名称")
     private java.lang.String productName;
 	/**购买数量*/
-	@Excel(name = "购买数量", width = 15)
+	@Excel(name = "数量", width = 15)
     @ApiModelProperty(value = "购买数量")
     private java.lang.Integer buyNumber;
 	/**收货人*/
@@ -52,13 +52,21 @@ public class DataGoods implements Serializable {
     @ApiModelProperty(value = "收货人")
     private java.lang.String consignee;
 	/**联系方式*/
-	@Excel(name = "联系方式", width = 15)
+	@Excel(name = "收货人电话", width = 15)
     @ApiModelProperty(value = "联系方式")
     private java.lang.String mobile;
 	/**订单金额*/
 	@Excel(name = "订单金额", width = 15)
     @ApiModelProperty(value = "订单金额")
     private java.math.BigDecimal orderPrice;
+
+    @Excel(name = "下单时间", width = 15)
+//    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @ApiModelProperty(value = "下单时间")
+    private String createOrderTime;
+
+
 	/**支付方式*/
 	@Excel(name = "支付方式", width = 15)
     @ApiModelProperty(value = "支付方式")

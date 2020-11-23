@@ -1,10 +1,12 @@
 package org.jeecg.modules.xjdatascreen.datapackageticket.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
+import org.jeecg.modules.xjdatascreen.datapackageticket.entity.CommonVO;
 import org.jeecg.modules.xjdatascreen.datapackageticket.entity.DataPackageTicket;
 import org.jeecg.modules.xjdatascreen.datapackageticket.service.IDataPackageTicketService;
 
@@ -152,6 +154,13 @@ public class DataPackageTicketController extends JeecgController<DataPackageTick
     @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, DataPackageTicket.class);
+    }
+
+    @ApiOperation(value = "获取旅游收入统计", notes = "获取旅游收入统计")
+    @GetMapping("/getTravelData")
+     public Result<?> getTravelData() {
+        List<CommonVO> commonVOS = dataPackageTicketService.selectAll();
+        return Result.ok(commonVOS);
     }
 
 }

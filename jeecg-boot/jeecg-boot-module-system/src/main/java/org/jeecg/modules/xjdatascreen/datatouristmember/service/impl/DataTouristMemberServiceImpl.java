@@ -73,4 +73,44 @@ public class DataTouristMemberServiceImpl extends ServiceImpl<DataTouristMemberM
             dataTouristMemberVOS.add(dataTouristMemberVO2);
         return dataTouristMemberVOS;
     }
+
+    @Override
+    public List<DataTouristMemberVO> selectNationalDayAll() {
+        List<DataTouristMemberVO> dataTouristMemberVOS = new ArrayList<>();
+        List<DataTouristMemberVO.peopleData> peopleDataList = new ArrayList<>();
+        List<DataTouristMemberVO.peopleData> peopleDataList1 = new ArrayList<>();
+        DataTouristMemberVO dataTouristMemberVO = new DataTouristMemberVO();
+        DataTouristMemberVO dataTouristMemberVO1 = new DataTouristMemberVO();
+
+        //获取去年数据
+        String beforeYear = DateUtil.comYear(1);
+        List<String> days = DateUtil.getDays(beforeYear + "-09-26", beforeYear + "-10-10");
+        for (String day : days) {
+            Integer integer = dataTouristMemberMapper.selectCount(Wrappers.<DataTouristMember>query().lambda()
+                    .last("where DATE_FORMAT(create_time, '%Y-%m-%d') =" + "'" + day + "'"));
+            DataTouristMemberVO.peopleData peopleData = new DataTouristMemberVO.peopleData();
+            dataTouristMemberVO.setType(beforeYear + "年");
+            peopleData.setMouth(day);
+            peopleData.setTotalPeople(integer);
+            peopleDataList.add(peopleData);
+            dataTouristMemberVO.setPeopleDataList(peopleDataList);
+        }
+
+        //获取今年数据
+        String year = new SimpleDateFormat("yyyy").format(new Date());
+        List<String> days1 = DateUtil.getDays(year + "-09-26", year + "-10-10");
+        for (String s : days1) {
+            Integer integer = dataTouristMemberMapper.selectCount(Wrappers.<DataTouristMember>query().lambda()
+                    .last("where DATE_FORMAT(create_time, '%Y-%m-%d') =" + "'" + s + "'"));
+            DataTouristMemberVO.peopleData peopleData1 = new DataTouristMemberVO.peopleData();
+            dataTouristMemberVO.setType(year + "年");
+            peopleData1.setMouth(s);
+            peopleData1.setTotalPeople(integer);
+            peopleDataList1.add(peopleData1);
+            dataTouristMemberVO1.setPeopleDataList(peopleDataList1);
+        }
+        dataTouristMemberVOS.add(dataTouristMemberVO);
+        dataTouristMemberVOS.add(dataTouristMemberVO1);
+        return dataTouristMemberVOS;
+    }
 }

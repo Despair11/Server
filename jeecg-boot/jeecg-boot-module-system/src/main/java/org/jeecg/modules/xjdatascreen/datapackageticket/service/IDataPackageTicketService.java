@@ -1,7 +1,10 @@
 package org.jeecg.modules.xjdatascreen.datapackageticket.service;
 
+import org.jeecg.modules.xjdatascreen.datapackageticket.entity.CommonVO;
 import org.jeecg.modules.xjdatascreen.datapackageticket.entity.DataPackageTicket;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * @Description: data_package_ticket
@@ -11,4 +14,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IDataPackageTicketService extends IService<DataPackageTicket> {
 
+
+    /**
+     * 获取旅游总收入
+     * @return
+     */
+    List<CommonVO> selectAll();
 }

@@ -52,19 +52,26 @@ public class DataRailwayOrder implements Serializable {
     @ApiModelProperty(value = "联系人")
     private java.lang.String contactPerson;
 	/**联系方式*/
-	@Excel(name = "联系方式", width = 15)
+	@Excel(name = "联系人电话", width = 15)
     @ApiModelProperty(value = "联系方式")
     private java.lang.String mobile;
 	/**使用时间*/
-	@Excel(name = "使用时间", width = 15, format = "yyyy-MM-dd")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+	@Excel(name = "使用日期", width = 15, format = "yyyy-MM-dd")
+//	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "使用时间")
-    private java.util.Date useTime;
+    private String useTime;
 	/**订单金额*/
 	@Excel(name = "订单金额", width = 15)
     @ApiModelProperty(value = "订单金额")
     private java.math.BigDecimal orderPrice;
+
+    @Excel(name = "下单时间", width = 15, format = "yyyy-MM-dd")
+//    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @ApiModelProperty(value = "下单时间")
+    private String createOrderTime;
+
 	/**支付方式*/
 	@Excel(name = "支付方式", width = 15)
     @ApiModelProperty(value = "支付方式")

@@ -1,11 +1,13 @@
 package org.jeecg.modules.xjdatascreen.dataordercheckrecord.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.xjdatascreen.dataordercheckrecord.entity.DataOrderCheckRecord;
+import org.jeecg.modules.xjdatascreen.dataordercheckrecord.entity.DataOrderCheckRecordVO;
 import org.jeecg.modules.xjdatascreen.dataordercheckrecord.service.IDataOrderCheckRecordService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -27,7 +29,7 @@ import org.jeecg.common.aspect.annotation.AutoLog;
  * @Date:   2020-11-21
  * @Version: V1.0
  */
-@Api(tags="data_order_check_record")
+@Api(tags="data_order_check_record_游客审核管理")
 @RestController
 @RequestMapping("/dataordercheckrecord/dataOrderCheckRecord")
 @Slf4j
@@ -35,111 +37,111 @@ public class DataOrderCheckRecordController extends JeecgController<DataOrderChe
 	@Autowired
 	private IDataOrderCheckRecordService dataOrderCheckRecordService;
 	
-	/**
-	 * 分页列表查询
-	 *
-	 * @param dataOrderCheckRecord
-	 * @param pageNo
-	 * @param pageSize
-	 * @param req
-	 * @return
-	 */
-	@AutoLog(value = "data_order_check_record-分页列表查询")
-	@ApiOperation(value="data_order_check_record-分页列表查询", notes="data_order_check_record-分页列表查询")
-	@GetMapping(value = "/list")
-	public Result<?> queryPageList(DataOrderCheckRecord dataOrderCheckRecord,
-								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
-								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
-								   HttpServletRequest req) {
-		QueryWrapper<DataOrderCheckRecord> queryWrapper = QueryGenerator.initQueryWrapper(dataOrderCheckRecord, req.getParameterMap());
-		Page<DataOrderCheckRecord> page = new Page<DataOrderCheckRecord>(pageNo, pageSize);
-		IPage<DataOrderCheckRecord> pageList = dataOrderCheckRecordService.page(page, queryWrapper);
-		return Result.ok(pageList);
-	}
-	
-	/**
-	 *   添加
-	 *
-	 * @param dataOrderCheckRecord
-	 * @return
-	 */
-	@AutoLog(value = "data_order_check_record-添加")
-	@ApiOperation(value="data_order_check_record-添加", notes="data_order_check_record-添加")
-	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody DataOrderCheckRecord dataOrderCheckRecord) {
-		dataOrderCheckRecordService.save(dataOrderCheckRecord);
-		return Result.ok("添加成功！");
-	}
-	
-	/**
-	 *  编辑
-	 *
-	 * @param dataOrderCheckRecord
-	 * @return
-	 */
-	@AutoLog(value = "data_order_check_record-编辑")
-	@ApiOperation(value="data_order_check_record-编辑", notes="data_order_check_record-编辑")
-	@PutMapping(value = "/edit")
-	public Result<?> edit(@RequestBody DataOrderCheckRecord dataOrderCheckRecord) {
-		dataOrderCheckRecordService.updateById(dataOrderCheckRecord);
-		return Result.ok("编辑成功!");
-	}
-	
-	/**
-	 *   通过id删除
-	 *
-	 * @param id
-	 * @return
-	 */
-	@AutoLog(value = "data_order_check_record-通过id删除")
-	@ApiOperation(value="data_order_check_record-通过id删除", notes="data_order_check_record-通过id删除")
-	@DeleteMapping(value = "/delete")
-	public Result<?> delete(@RequestParam(name="id",required=true) String id) {
-		dataOrderCheckRecordService.removeById(id);
-		return Result.ok("删除成功!");
-	}
-	
-	/**
-	 *  批量删除
-	 *
-	 * @param ids
-	 * @return
-	 */
-	@AutoLog(value = "data_order_check_record-批量删除")
-	@ApiOperation(value="data_order_check_record-批量删除", notes="data_order_check_record-批量删除")
-	@DeleteMapping(value = "/deleteBatch")
-	public Result<?> deleteBatch(@RequestParam(name="ids",required=true) String ids) {
-		this.dataOrderCheckRecordService.removeByIds(Arrays.asList(ids.split(",")));
-		return Result.ok("批量删除成功!");
-	}
-	
-	/**
-	 * 通过id查询
-	 *
-	 * @param id
-	 * @return
-	 */
-	@AutoLog(value = "data_order_check_record-通过id查询")
-	@ApiOperation(value="data_order_check_record-通过id查询", notes="data_order_check_record-通过id查询")
-	@GetMapping(value = "/queryById")
-	public Result<?> queryById(@RequestParam(name="id",required=true) String id) {
-		DataOrderCheckRecord dataOrderCheckRecord = dataOrderCheckRecordService.getById(id);
-		if(dataOrderCheckRecord==null) {
-			return Result.error("未找到对应数据");
-		}
-		return Result.ok(dataOrderCheckRecord);
-	}
-
-    /**
-    * 导出excel
-    *
-    * @param request
-    * @param dataOrderCheckRecord
-    */
-    @RequestMapping(value = "/exportXls")
-    public ModelAndView exportXls(HttpServletRequest request, DataOrderCheckRecord dataOrderCheckRecord) {
-        return super.exportXls(request, dataOrderCheckRecord, DataOrderCheckRecord.class, "data_order_check_record");
-    }
+//	/**
+//	 * 分页列表查询
+//	 *
+//	 * @param dataOrderCheckRecord
+//	 * @param pageNo
+//	 * @param pageSize
+//	 * @param req
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_order_check_record-分页列表查询")
+//	@ApiOperation(value="data_order_check_record-分页列表查询", notes="data_order_check_record-分页列表查询")
+//	@GetMapping(value = "/list")
+//	public Result<?> queryPageList(DataOrderCheckRecord dataOrderCheckRecord,
+//								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+//								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+//								   HttpServletRequest req) {
+//		QueryWrapper<DataOrderCheckRecord> queryWrapper = QueryGenerator.initQueryWrapper(dataOrderCheckRecord, req.getParameterMap());
+//		Page<DataOrderCheckRecord> page = new Page<DataOrderCheckRecord>(pageNo, pageSize);
+//		IPage<DataOrderCheckRecord> pageList = dataOrderCheckRecordService.page(page, queryWrapper);
+//		return Result.ok(pageList);
+//	}
+//
+//	/**
+//	 *   添加
+//	 *
+//	 * @param dataOrderCheckRecord
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_order_check_record-添加")
+//	@ApiOperation(value="data_order_check_record-添加", notes="data_order_check_record-添加")
+//	@PostMapping(value = "/add")
+//	public Result<?> add(@RequestBody DataOrderCheckRecord dataOrderCheckRecord) {
+//		dataOrderCheckRecordService.save(dataOrderCheckRecord);
+//		return Result.ok("添加成功！");
+//	}
+//
+//	/**
+//	 *  编辑
+//	 *
+//	 * @param dataOrderCheckRecord
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_order_check_record-编辑")
+//	@ApiOperation(value="data_order_check_record-编辑", notes="data_order_check_record-编辑")
+//	@PutMapping(value = "/edit")
+//	public Result<?> edit(@RequestBody DataOrderCheckRecord dataOrderCheckRecord) {
+//		dataOrderCheckRecordService.updateById(dataOrderCheckRecord);
+//		return Result.ok("编辑成功!");
+//	}
+//
+//	/**
+//	 *   通过id删除
+//	 *
+//	 * @param id
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_order_check_record-通过id删除")
+//	@ApiOperation(value="data_order_check_record-通过id删除", notes="data_order_check_record-通过id删除")
+//	@DeleteMapping(value = "/delete")
+//	public Result<?> delete(@RequestParam(name="id",required=true) String id) {
+//		dataOrderCheckRecordService.removeById(id);
+//		return Result.ok("删除成功!");
+//	}
+//
+//	/**
+//	 *  批量删除
+//	 *
+//	 * @param ids
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_order_check_record-批量删除")
+//	@ApiOperation(value="data_order_check_record-批量删除", notes="data_order_check_record-批量删除")
+//	@DeleteMapping(value = "/deleteBatch")
+//	public Result<?> deleteBatch(@RequestParam(name="ids",required=true) String ids) {
+//		this.dataOrderCheckRecordService.removeByIds(Arrays.asList(ids.split(",")));
+//		return Result.ok("批量删除成功!");
+//	}
+//
+//	/**
+//	 * 通过id查询
+//	 *
+//	 * @param id
+//	 * @return
+//	 */
+//	@AutoLog(value = "data_order_check_record-通过id查询")
+//	@ApiOperation(value="data_order_check_record-通过id查询", notes="data_order_check_record-通过id查询")
+//	@GetMapping(value = "/queryById")
+//	public Result<?> queryById(@RequestParam(name="id",required=true) String id) {
+//		DataOrderCheckRecord dataOrderCheckRecord = dataOrderCheckRecordService.getById(id);
+//		if(dataOrderCheckRecord==null) {
+//			return Result.error("未找到对应数据");
+//		}
+//		return Result.ok(dataOrderCheckRecord);
+//	}
+//
+//    /**
+//    * 导出excel
+//    *
+//    * @param request
+//    * @param dataOrderCheckRecord
+//    */
+//    @RequestMapping(value = "/exportXls")
+//    public ModelAndView exportXls(HttpServletRequest request, DataOrderCheckRecord dataOrderCheckRecord) {
+//        return super.exportXls(request, dataOrderCheckRecord, DataOrderCheckRecord.class, "data_order_check_record");
+//    }
 
     /**
       * 通过excel导入数据
@@ -148,9 +150,22 @@ public class DataOrderCheckRecordController extends JeecgController<DataOrderChe
     * @param response
     * @return
     */
+    @ApiOperation(value = "游客审核数据导入", notes = "游客审核数据导入")
     @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, DataOrderCheckRecord.class);
     }
+
+
+	 /**
+	  * 获取游客总数据
+	  * @return
+	  */
+	 @ApiOperation(value = "获取游客总数据", notes = "获取游客总数据")
+	 @GetMapping("/getSumTourist")
+	 public Result<?> getSumTourist() {
+		List<DataOrderCheckRecordVO> dataOrderCheckRecordVOS = dataOrderCheckRecordService.selectAll();
+		return Result.ok(dataOrderCheckRecordVOS);
+	}
 
 }

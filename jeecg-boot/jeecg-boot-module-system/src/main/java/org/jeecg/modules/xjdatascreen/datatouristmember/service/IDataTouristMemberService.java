@@ -20,4 +20,12 @@ public interface IDataTouristMemberService extends IService<DataTouristMember> {
      * @return
      */
     List<DataTouristMemberVO> selectAll();
+
+
+    /**
+     * 获取国庆节接待游客数据
+     * @return
+     */
+    List<DataTouristMemberVO> selectNationalDayAll();
+
 }

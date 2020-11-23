@@ -1,6 +1,7 @@
 package org.jeecg.modules.xjdatascreen.datasingleticket.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -51,23 +52,29 @@ public class DataSingleTicket implements Serializable {
     @ApiModelProperty(value = "联系人")
     private java.lang.String contactPerson;
 	/**联系电话*/
-	@Excel(name = "联系电话", width = 15)
+	@Excel(name = "联系人电话", width = 15)
     @ApiModelProperty(value = "联系电话")
     private java.lang.String mobile;
 	/**使用日期*/
 	@Excel(name = "使用日期", width = 15, format = "yyyy-MM-dd")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+//	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "使用日期")
-    private java.util.Date useTime;
+    private String useTime;
 	/**订单金额*/
 	@Excel(name = "订单金额", width = 15)
     @ApiModelProperty(value = "订单金额")
     private java.math.BigDecimal orderPrice;
 	/**购买数量*/
-	@Excel(name = "购买数量", width = 15)
+	@Excel(name = "数量", width = 15)
     @ApiModelProperty(value = "购买数量")
     private java.lang.Integer buyNumber;
+
+    @Excel(name = "下单时间", width = 15, format = "yyyy-MM-dd")
+//    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @ApiModelProperty(value = "下单时间")
+    private String createOrderTime;
 	/**支付方式*/
 	@Excel(name = "支付方式", width = 15)
     @ApiModelProperty(value = "支付方式")
@@ -81,7 +88,7 @@ public class DataSingleTicket implements Serializable {
     @ApiModelProperty(value = "支付订单")
     private java.lang.String payOrderId;
 	/**第三方订单号*/
-	@Excel(name = "第三方订单号", width = 15)
+	@Excel(name = "第三方单号", width = 15)
     @ApiModelProperty(value = "第三方订单号")
     private java.lang.String thirdOrderId;
 	/**创建人*/
