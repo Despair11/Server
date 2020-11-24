@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.xjdatascreen.datapackageticketorder.mapper.PackageTicketOrderMapper">
+
+    <select id="selectAll" resultType="org.jeecg.modules.xjdatascreen.datapackageticketorder.entity.OrderVO">
+        SELECT
+	        c.use_count
+        FROM
+	        package_ticket_order a
+	    LEFT JOIN ticket_order b ON a.order_num = b.pid
+	    LEFT JOIN ticket_order_detail c ON b.order_num = c.order_num
+        WHERE
+	        b.order_type = 6 and DATE_FORMAT(a.use_date,'%Y')  = DATE_FORMAT(NOW(),'%Y');
+    </select>
+    <select id="selectByScenicNum" resultType="org.jeecg.modules.xjdatascreen.datapackageticketorder.entity.OrderVO">
+        SELECT
+        	a.scenic_num,
+        	c.use_count
+        FROM
+        	package_ticket_order a
+        	LEFT JOIN ticket_order b ON a.order_num = b.pid
+        	LEFT JOIN ticket_order_detail c ON b.order_num = c.order_num
+        WHERE
+        	b.order_type = 6
+        	AND DATE_FORMAT( a.use_date, '%Y' ) = DATE_FORMAT( NOW(), '%Y' )
+        	AND a.scenic_num = #{scenicNum}
+    </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.xjdatascreen.datatickpassengers.mapper.TickPassengersMapper">
+
+    <select id="selectAll"
+            resultType="org.jeecg.modules.xjdatascreen.datatouristmember.entity.DataTouristMember">
+        SELECT
+        	a.card_no ,
+        	b.sex,
+        	d.scenic_num
+        FROM
+        	`tick_passengers` a
+        	LEFT JOIN data_tourist_member b ON a.card_no = b.card_id
+        	LEFT JOIN ticket_order_detail c ON a.order_detail_id = c.order_detail_id
+        	LEFT JOIN ticket_order d ON c.order_num = d.order_num
+        WHERE
+        	d.scenic_num = #{scenicNum}
+        AND  c.use_date between #{startTime} and #{endTime}
+    </select>
+</mapper>

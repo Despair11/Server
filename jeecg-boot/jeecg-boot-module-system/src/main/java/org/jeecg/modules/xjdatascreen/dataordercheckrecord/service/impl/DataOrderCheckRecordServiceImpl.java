@@ -37,8 +37,8 @@ public class DataOrderCheckRecordServiceImpl extends ServiceImpl<DataOrderCheckR
 
     @Override
     public List<DataOrderCheckRecordVO> selectAll() {
-        //记录今日接待游客数
         List<DataOrderCheckRecordVO> dataOrderCheckRecordVOS = new ArrayList<>();
+        //记录今日接待游客数
         DataOrderCheckRecordVO dataOrderCheckRecordVO = new DataOrderCheckRecordVO();
         //记录今年接待总人数
         DataOrderCheckRecordVO dataOrderCheckRecordVO1 = new DataOrderCheckRecordVO();
