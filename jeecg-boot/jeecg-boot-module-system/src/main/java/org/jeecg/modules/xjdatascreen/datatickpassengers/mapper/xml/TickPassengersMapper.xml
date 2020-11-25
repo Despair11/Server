@@ -86,8 +86,8 @@
 		from ticket_order a
 		left join ticket_order_detail b on a.order_num = b.order_num
 		where a.scenic_num = #{scenicNum}
-		and DATE_FORMAT(use_date, '%Y') = #{years}
-		and DATE_FORMAT(use_date, '%m-%d') = #{days}
+		and DATE_FORMAT(b.use_date, '%Y') = #{years}
+		and DATE_FORMAT(b.use_date, '%m-%d') = #{days}
 		and DATE_FORMAT(b.use_date, '%m-%d') between #{startTime} and #{endTime}
 	</select>
 
