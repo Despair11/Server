@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
+import org.jeecg.modules.xjdatascreen.dataordercheckrecord.entity.DataOrderCheckRecordVO;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengers;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengersVO;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.service.ITickPassengersService;
@@ -16,6 +17,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 
 import org.jeecg.common.system.base.controller.JeecgController;
+import org.jeecg.modules.xjdatascreen.datatouristmember.entity.DataTouristMemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +31,7 @@ import org.jeecg.common.aspect.annotation.AutoLog;
  * @Date:   2020-11-24
  * @Version: V1.0
  */
-@Api(tags="tick_passengers")
+@Api(tags="tick_passengers_游客数据相关操作")
 @RestController
 @RequestMapping("/datatickpassengers/tickPassengers")
 @Slf4j
@@ -37,11 +39,32 @@ public class TickPassengersController extends JeecgController<TickPassengers, IT
 	@Autowired
 	private ITickPassengersService tickPassengersService;
 
-	@ApiOperation(value = "获取各景区游客年龄和性别", notes = "获取各景区游客年龄和性别")
+	@ApiOperation(value = "获取各景区游客年龄和性别(折线图)", notes = "获取各景区游客年龄和性别(折线图)")
 	 @GetMapping("/getAgeAndSexData")
-	 public Result<?> getAgeAndSexData(String scenicName, String startTime, String endTim) {
-		List<TickPassengersVO> tickPassengersVOS = tickPassengersService.selectAll(scenicName, startTime, endTim);
+	 public Result<?> getAgeAndSexData(String scenicName, String startTime, String endTime) {
+		List<TickPassengersVO> tickPassengersVOS = tickPassengersService.selectAll(scenicName, startTime, endTime);
 		return Result.ok(tickPassengersVOS);
+	}
+
+	@ApiOperation(value = "获取各个景区的游客数量(折线图)", notes = "获取各个景区的游客数量(折线图)")
+	 @GetMapping("/getTheNumberOfData")
+	 public Result<?> getTheNumberOfData (String scenicName, String startTime, String endTime) {
+		List<DataTouristMemberVO> dataTouristMemberVOS = tickPassengersService.selectTouristAll(scenicName, startTime, endTime);
+		return Result.ok(dataTouristMemberVOS);
+	}
+
+	@ApiOperation(value = "获取各个景区的游客接待数", notes = "获取各个景区的游客接待数")
+	 @GetMapping("/getTouristData")
+	 public Result<?> getTouristData(String scenicName) {
+		List<DataOrderCheckRecordVO> dataOrderCheckRecordVOS = tickPassengersService.selectSumTourist(scenicName);
+		return Result.ok(dataOrderCheckRecordVOS);
+	}
+
+	@ApiOperation(value = "获取每个景区节假日游客数据(折线图)", notes = "获取每个景区节假日游客数据(折线图)")
+	 @GetMapping("/getHolidaysData")
+	 public Result<?> getHolidaysData(String scenicName, String startTime, String endTime) {
+		List<DataTouristMemberVO> dataTouristMemberVOS = tickPassengersService.selectGalaData(scenicName, startTime, endTime);
+		return Result.ok(dataTouristMemberVOS);
 	}
 //
 //	/**

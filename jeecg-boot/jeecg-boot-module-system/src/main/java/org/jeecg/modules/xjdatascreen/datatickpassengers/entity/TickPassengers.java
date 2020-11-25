@@ -87,4 +87,6 @@ public class TickPassengers implements Serializable {
 	@Excel(name = "二次核验时间", width = 15)
     @ApiModelProperty(value = "二次核验时间")
     private java.lang.String doubleCheckTime;
+
+
 }

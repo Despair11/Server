@@ -17,4 +17,78 @@
         	d.scenic_num = #{scenicNum}
         AND  c.use_date between #{startTime} and #{endTime}
     </select>
+    <select id="selectTouristAll"
+            resultType="org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail">
+		SELECT
+			b.use_count
+		FROM
+			`tick_passengers` a
+			LEFT JOIN ticket_order_detail b ON a.order_detail_id = b.order_detail_id
+			LEFT JOIN ticket_order c ON b.order_num = c.order_num
+			WHERE b.use_date BETWEEN #{startTime} AND #{endTime}
+			AND c.scenic_num = #{scenicNum}
+			AND a.card_no LIKE CONCAT(46, '%')
+			AND DATE_FORMAT(use_date, '%Y-%m-%d') = #{days}
+	</select>
+	<select id="selectTouristAllOutsideTheProvince"
+			resultType="org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail">
+		SELECT
+			b.use_count
+		FROM
+			`tick_passengers` a
+			LEFT JOIN ticket_order_detail b ON a.order_detail_id = b.order_detail_id
+			LEFT JOIN ticket_order c ON b.order_num = c.order_num
+			WHERE b.use_date BETWEEN #{startTime} AND #{endTime}
+			AND c.scenic_num = #{scenicNum}
+			AND a.card_no NOT LIKE CONCAT(46, '%')
+			AND DATE_FORMAT(use_date, '%Y-%m-%d') = #{days}
+	</select>
+	<select id="selectSumTourist"
+			resultType="org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail">
+		select
+			b.use_count
+		from ticket_order a
+		left join ticket_order_detail b on a.order_num = b.order_num
+		where a.scenic_num = #{scenicNum}
+		and DATE_FORMAT(b.use_date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d')
+	</select>
+	<select id="lastMonthVisitorData"
+			resultType="org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail">
+		select
+			b.use_count
+		from ticket_order a
+		left join ticket_order_detail b on a.order_num = b.order_num
+		where a.scenic_num = #{scenicNum}
+		and DATE_FORMAT(use_date, '%Y-%m') = #{mouths}
+	</select>
+	<select id="selectSumTouristYear"
+			resultType="org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail">
+		select
+			b.use_count
+		from ticket_order a
+		left join ticket_order_detail b on a.order_num = b.order_num
+		where a.scenic_num = #{scenicNum}
+		and DATE_FORMAT(b.use_date, '%Y') = DATE_FORMAT(NOW(), '%Y')
+	</select>
+	<select id="lastMonthVisitorYearData"
+			resultType="org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail">
+		select
+			b.use_count
+		from ticket_order a
+		left join ticket_order_detail b on a.order_num = b.order_num
+		where a.scenic_num = #{scenicNum}
+		and DATE_FORMAT(use_date, '%Y') = #{years}
+	</select>
+	<select id="selectGalaData"
+			resultType="org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail">
+		select
+			b.use_count
+		from ticket_order a
+		left join ticket_order_detail b on a.order_num = b.order_num
+		where a.scenic_num = #{scenicNum}
+		and DATE_FORMAT(use_date, '%Y') = #{years}
+		and DATE_FORMAT(use_date, '%m-%d') = #{days}
+		and DATE_FORMAT(b.use_date, '%m-%d') between #{startTime} and #{endTime}
+	</select>
+
 </mapper>

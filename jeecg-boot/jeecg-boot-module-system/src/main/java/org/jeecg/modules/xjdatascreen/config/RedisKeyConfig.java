@@ -20,4 +20,8 @@ public class RedisKeyConfig {
     public static final String tourism_income_key = "tourism:income:key";
     //各个景区游客统计
     public static final String scenic_info_key = "scenic:info:key";
+    //各个景区游客统计
+    public static final String various_scenic_spots_key = "various:scenic:spots:key";
+    //各个景区每年游客数据
+    public static final String annual_tourist_data_of_scenic_spots_key = "annual:tourist:data:of:scenic:spots:key";
 }
