@@ -29,15 +29,16 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jeecgframework.boot</groupId>
 			<artifactId>jeecg-boot-base-common</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
+		<finalName>hami-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
