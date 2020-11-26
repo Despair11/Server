@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -87,6 +88,11 @@ public class TickPassengers implements Serializable {
 	@Excel(name = "二次核验时间", width = 15)
     @ApiModelProperty(value = "二次核验时间")
     private java.lang.String doubleCheckTime;
+
+
+	//使用数量
+	@TableField(exist = false)
+    private int useCount;
 
 
 }

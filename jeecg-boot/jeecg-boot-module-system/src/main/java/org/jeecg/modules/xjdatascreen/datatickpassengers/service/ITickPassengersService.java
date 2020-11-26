@@ -2,6 +2,7 @@ package org.jeecg.modules.xjdatascreen.datatickpassengers.service;
 
 import org.apache.ibatis.annotations.Param;
 import org.jeecg.modules.xjdatascreen.dataordercheckrecord.entity.DataOrderCheckRecordVO;
+import org.jeecg.modules.xjdatascreen.dataselfdrivingtour.entity.DataSelfDrivingTourVO;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengersVO;
@@ -53,5 +54,13 @@ public interface ITickPassengersService extends IService<TickPassengers> {
      * @return
      */
     List<DataTouristMemberVO> selectGalaData(String scenicName, String startTime, String endTime);
+
+
+    /**
+     * 获取主要游客来源地
+     * @return
+     */
+    List<DataSelfDrivingTourVO> selectTouristOriginAll();
+
 
 }

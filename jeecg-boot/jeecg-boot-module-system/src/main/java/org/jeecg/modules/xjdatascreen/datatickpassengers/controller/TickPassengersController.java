@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.xjdatascreen.dataordercheckrecord.entity.DataOrderCheckRecordVO;
+import org.jeecg.modules.xjdatascreen.dataselfdrivingtour.entity.DataSelfDrivingTourVO;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengers;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengersVO;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.service.ITickPassengersService;
@@ -65,6 +66,13 @@ public class TickPassengersController extends JeecgController<TickPassengers, IT
 	 public Result<?> getHolidaysData(String scenicName, String startTime, String endTime) {
 		List<DataTouristMemberVO> dataTouristMemberVOS = tickPassengersService.selectGalaData(scenicName, startTime, endTime);
 		return Result.ok(dataTouristMemberVOS);
+	}
+
+	@ApiOperation(value = "获取主要游客来源", notes = "获取主要游客来源")
+	 @GetMapping("/getTouristOriginAll")
+	 public Result<?> getTouristOriginAll() {
+		List<DataSelfDrivingTourVO> dataSelfDrivingTourVOS = tickPassengersService.selectTouristOriginAll();
+		return Result.ok(dataSelfDrivingTourVOS);
 	}
 //
 //	/**

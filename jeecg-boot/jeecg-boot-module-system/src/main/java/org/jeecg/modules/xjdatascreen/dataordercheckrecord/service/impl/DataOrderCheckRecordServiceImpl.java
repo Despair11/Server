@@ -35,6 +35,11 @@ public class DataOrderCheckRecordServiceImpl extends ServiceImpl<DataOrderCheckR
     @Resource
     private RedisTemplate redisTemplate;
 
+    public static void main(String[] args) {
+        Double i = 1.00;
+        int i1 = i.compareTo(1.00);
+        System.out.println(i1);
+    }
     @Override
     public List<DataOrderCheckRecordVO> selectAll() {
         List<DataOrderCheckRecordVO> dataOrderCheckRecordVOS = new ArrayList<>();
@@ -57,7 +62,7 @@ public class DataOrderCheckRecordServiceImpl extends ServiceImpl<DataOrderCheckR
             //获取今日接待游客数据汇总
             if(i < 0) {
                 dataOrderCheckRecordVO.setFlag(1);
-            } else if(i> 0) {
+            } else if(i > 0) {
                 dataOrderCheckRecordVO.setFlag(2);
             } else {
                 dataOrderCheckRecordVO.setFlag(3);

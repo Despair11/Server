@@ -3,9 +3,13 @@ package org.jeecg.modules.xjdatascreen.dataparking.controller;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cn.hutool.http.HttpUtil;
+import com.alibaba.fastjson.JSONObject;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.xjdatascreen.dataparking.entity.DataParking;
+import org.jeecg.modules.xjdatascreen.dataparking.entity.DataParkingVO;
 import org.jeecg.modules.xjdatascreen.dataparking.service.IDataParkingService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -14,14 +18,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 
 import org.jeecg.common.system.base.controller.JeecgController;
+import org.jeecg.modules.xjdatascreen.utils.HttpClientUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.jeecg.common.aspect.annotation.AutoLog;
+import springfox.documentation.spring.web.json.Json;
 
- /**
+/**
  * @Description: data_parking
  * @Author: jeecg-boot
  * @Date:   2020-11-18
@@ -34,6 +40,7 @@ import org.jeecg.common.aspect.annotation.AutoLog;
 public class DataParkingController extends JeecgController<DataParking, IDataParkingService> {
 	@Autowired
 	private IDataParkingService dataParkingService;
+
 	
 //	/**
 //	 * 分页列表查询

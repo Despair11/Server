@@ -90,5 +90,15 @@
 		and DATE_FORMAT(b.use_date, '%m-%d') = #{days}
 		and DATE_FORMAT(b.use_date, '%m-%d') between #{startTime} and #{endTime}
 	</select>
+	<select id="selectSumTouristYearOne"
+			resultType="org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengers">
+		select
+			a.card_no,
+			b.use_count
+		from tick_passengers a
+		left join ticket_order_detail b on a.order_detail_id = b.order_detail_id
+		where DATE_FORMAT(b.use_date, '%Y') = DATE_FORMAT(NOW(), '%Y')
+		AND b.use_count > 0
+	</select>
 
 </mapper>

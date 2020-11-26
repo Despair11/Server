@@ -97,4 +97,11 @@ public interface TickPassengersMapper extends BaseMapper<TickPassengers> {
                                            @Param("endTime") String endTime,
                                            @Param("days") String days);
 
+
+    /**
+     * 获取所有景观每年的游玩人数据
+     * @return
+     */
+    List<TickPassengers> selectSumTouristYearOne();
+
 }

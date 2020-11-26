@@ -81,7 +81,9 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
         }
         //根据占比进行排序
         dataWineShopVOS.sort(Comparator.comparing(DataWineShopVO::getPercentage).reversed());
-        dataWineShopVOS.subList(0,4);
+        if (dataWineShopVOS.size() > 4) {
+            return dataWineShopVOS.subList(0, 4);
+        }
         return dataWineShopVOS;
     }
 }

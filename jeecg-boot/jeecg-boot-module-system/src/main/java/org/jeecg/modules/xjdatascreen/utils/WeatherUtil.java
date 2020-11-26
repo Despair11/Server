@@ -168,18 +168,17 @@ public class WeatherUtil {
     public static void main(String[] args) throws IOException {
         //哈密编号 101131201
         //杭州编号 101210101
-        Map<String, Object> todayWeather1 = getTodayWeather1("101131201");
+        Map<String, Object> todayWeather1 = getTodayWeather1("101210101");
         System.out.println(todayWeather1 + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        Map<String, Object> map2 = getTodayWeather("101131201");
+        Map<String, Object> map2 = getTodayWeather("101210101");
         System.out.println(map2.get("city") + "\t" + map2.get("temp1")
                 + "\t" + map2.get("temp2") + "\t" + map2.get("weather")
                 + "\t" + map2.get("ptime"));
 
 
-        //hutooljar包,根据身份证号判断户籍省份
-        String s = "41";
-        String province = IdcardUtil.getProvinceByIdCard(s);//根据身份编号获取户籍省份
-        System.out.println(province);
+//        //hutooljar包,根据身份证号判断户籍省份
+//        String province = IdcardUtil.getProvinceByIdCard("396831987728011264");//根据身份编号获取户籍省份
+//        System.out.println(province);
    }
 
 

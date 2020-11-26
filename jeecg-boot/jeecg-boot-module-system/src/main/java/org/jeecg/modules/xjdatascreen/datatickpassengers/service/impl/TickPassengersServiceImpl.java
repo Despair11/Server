@@ -1,5 +1,6 @@
 package org.jeecg.modules.xjdatascreen.datatickpassengers.service.impl;
 
+import cn.hutool.core.util.IdcardUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.apache.commons.collections.CollectionUtils;
@@ -8,6 +9,7 @@ import org.jeecg.modules.xjdatascreen.config.RedisKeyConfig;
 import org.jeecg.modules.xjdatascreen.dataordercheckrecord.entity.DataOrderCheckRecordVO;
 import org.jeecg.modules.xjdatascreen.datascenicinfo.entity.ScenicInfo;
 import org.jeecg.modules.xjdatascreen.datascenicinfo.mapper.ScenicInfoMapper;
+import org.jeecg.modules.xjdatascreen.dataselfdrivingtour.entity.DataSelfDrivingTourVO;
 import org.jeecg.modules.xjdatascreen.dataticketorderdetail.entity.TicketOrderDetail;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengers;
 import org.jeecg.modules.xjdatascreen.datatickpassengers.entity.TickPassengersVO;
@@ -380,6 +382,37 @@ public class TickPassengersServiceImpl extends ServiceImpl<TickPassengersMapper,
 //        }
 
         return dataTouristMemberVOS;
+    }
+
+    @Override
+    public List<DataSelfDrivingTourVO> selectTouristOriginAll() {
+        List<DataSelfDrivingTourVO> dataSelfDrivingTourVOS = new ArrayList<>();
+        List<DataSelfDrivingTourVO> dataSelfDrivingTourVOS1 = new ArrayList<>();
+        DataSelfDrivingTourVO dataSelfDrivingTourVO;
+        List<TickPassengers> tickPassengers = tickPassengersMapper.selectSumTouristYearOne();
+        if(CollectionUtils.isNotEmpty(tickPassengers)) {
+            for (TickPassengers tickPassenger : tickPassengers) {
+                dataSelfDrivingTourVO = new DataSelfDrivingTourVO();
+                //根据身份证号获取省份
+                String province = IdcardUtil.getProvinceByIdCard(tickPassenger.getCardNo());
+                dataSelfDrivingTourVO.setProvince(province);
+                dataSelfDrivingTourVO.setNumber(tickPassenger.getUseCount());
+                dataSelfDrivingTourVOS.add(dataSelfDrivingTourVO);
+            }
+            Map<String, List<DataSelfDrivingTourVO>> dataSelfDrivingTourVOMap = dataSelfDrivingTourVOS.stream().collect(Collectors.groupingBy(DataSelfDrivingTourVO::getProvince));
+            dataSelfDrivingTourVOMap.forEach((province, vo) ->{
+                DataSelfDrivingTourVO dataSelfDrivingTourVO1 = new DataSelfDrivingTourVO();
+                dataSelfDrivingTourVO1.setProvince(province);
+                int i = 0;
+                for (DataSelfDrivingTourVO selfDrivingTourVO : vo) {
+                    i += selfDrivingTourVO.getNumber();
+                }
+                dataSelfDrivingTourVO1.setNumber(i);
+                dataSelfDrivingTourVOS1.add(dataSelfDrivingTourVO1);
+            });
+
+        }
+        return dataSelfDrivingTourVOS1;
     }
 
 }

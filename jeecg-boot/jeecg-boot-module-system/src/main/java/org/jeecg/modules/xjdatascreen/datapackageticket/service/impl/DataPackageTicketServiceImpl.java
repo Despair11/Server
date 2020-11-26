@@ -2,6 +2,7 @@ package org.jeecg.modules.xjdatascreen.datapackageticket.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import org.apache.commons.lang3.StringUtils;
 import org.jeecg.modules.xjdatascreen.config.RedisKeyConfig;
 import org.jeecg.modules.xjdatascreen.datapackageticket.entity.CommonVO;
 import org.jeecg.modules.xjdatascreen.datapackageticket.entity.DataPackageTicket;
@@ -49,8 +50,8 @@ public class DataPackageTicketServiceImpl extends ServiceImpl<DataPackageTicketM
         CommonVO commonVO1 = new CommonVO();
         CommonVO commonVO2 = new CommonVO();
         if(! redisTemplate.hasKey(RedisKeyConfig.tourism_income_key)) {
-            String time = new SimpleDateFormat("yyyy").format(new Date());
-            List<String> mouths = DateUtil.getMouths(time + "-01", time + "-12");
+            String time = new SimpleDateFormat("yyyy-MM").format(new Date());
+            List<String> mouths = DateUtil.getMouths(DateUtil.comDate(Integer.parseInt(StringUtils.substringAfter(time,"-"))), time);
             for (String mouth : mouths) {
                 //获取门票每月金额
                 //获取套票总收入

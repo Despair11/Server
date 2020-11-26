@@ -90,6 +90,7 @@ public class DataUserController extends JeecgController<DataUser, IDataUserServi
 		return Result.ok("编辑成功!");
 	}
 
+
 	 @ApiOperation(value = "数据大屏获取天气", notes = "数据大屏获取天气")
 	 @GetMapping("/getWeather")
 	 public Result<?> getWeather() throws IOException {

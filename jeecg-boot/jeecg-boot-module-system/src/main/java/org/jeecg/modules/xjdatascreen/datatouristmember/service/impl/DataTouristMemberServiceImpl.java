@@ -81,7 +81,7 @@ public class DataTouristMemberServiceImpl extends ServiceImpl<DataTouristMemberM
             dataTouristMemberVOS.add(dataTouristMemberVO2);
             redisTemplate.opsForValue().set(RedisKeyConfig.tourist_member_key, JSONArray.toJSONString(dataTouristMemberVOS), RedisKeyConfig.effective_time, TimeUnit.SECONDS);
         } else {
-            Object o = redisTemplate.opsForValue().get(RedisKeyConfig.wine_shop_key);
+            Object o = redisTemplate.opsForValue().get(RedisKeyConfig.tourist_member_key);
             if(null != o) {
                 List<DataTouristMemberVO> dataTouristMemberVOS1 = JSONArray.parseArray(o.toString(), DataTouristMemberVO.class);
                 dataTouristMemberVOS.addAll(dataTouristMemberVOS1);
@@ -119,7 +119,7 @@ public class DataTouristMemberServiceImpl extends ServiceImpl<DataTouristMemberM
                 Integer integer = dataTouristMemberMapper.selectCount(Wrappers.<DataTouristMember>query().lambda()
                         .last("where DATE_FORMAT(create_time, '%Y-%m-%d') =" + "'" + s + "'"));
                 DataTouristMemberVO.peopleData peopleData1 = new DataTouristMemberVO.peopleData();
-                dataTouristMemberVO.setType(year + "年");
+                dataTouristMemberVO1.setType(year + "年");
                 peopleData1.setMouth(s);
                 peopleData1.setTotalPeople(integer);
                 peopleDataList1.add(peopleData1);
