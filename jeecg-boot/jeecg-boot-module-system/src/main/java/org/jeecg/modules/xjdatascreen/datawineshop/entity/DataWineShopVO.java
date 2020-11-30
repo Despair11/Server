@@ -21,3 +21,5 @@ public class DataWineShopVO implements Serializable {
     //入住率
     private String occupancyRate;
 }
+
+

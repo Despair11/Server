@@ -6,8 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
-import org.jeecg.modules.xjdatascreen.datawineshop.entity.DataWineShop;
-import org.jeecg.modules.xjdatascreen.datawineshop.entity.DataWineShopVO;
+import org.jeecg.modules.xjdatascreen.datawineshop.entity.*;
 import org.jeecg.modules.xjdatascreen.datawineshop.service.IDataWineShopService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -163,4 +162,62 @@ public class DataWineShopController extends JeecgController<DataWineShop, IDataW
         return Result.ok(dataWineShopVOS);
     }
 
-}
+    //======================================mock数据======================================================================
+     @ApiOperation("mock美食店铺数据")
+     @GetMapping("/getGourmetData")
+     public Result<?> getGourmetData() {
+         List<GourmetTestVO> gourmetTestVOS = dataWineShopService.selectAllGourmet();
+         return Result.ok(gourmetTestVOS);
+     }
+
+     @ApiOperation("mock游客分析来源数据")
+     @GetMapping("/getTravelData")
+     public Result<?> getTravelData() {
+         List<SourceOfTouristsVO> sourceOfTouristsVOS = dataWineShopService.selectAllTravel();
+         return Result.ok(sourceOfTouristsVOS);
+     }
+
+     @ApiOperation("mock关注热词数据")
+     @GetMapping("/getFocusOnHotSpotsData")
+     public Result<?> getFocusOnHotSpotsData() {
+         List<String> list = dataWineShopService.selectFocusOnHotSpotsAll();
+         return Result.ok(list);
+     }
+
+     @ApiOperation("mock游客满意度数据")
+     @GetMapping("/getTouristSatisfactionData")
+     public Result<?> getTouristSatisfactionData(String scenicName) {
+         List<TouristSatisfactionVO> touristSatisfactionVOS = dataWineShopService.selectSatisfactionAll(scenicName);
+         return Result.ok(touristSatisfactionVOS);
+     }
+
+
+     @ApiOperation("mock每个景区的各类票占比数据")
+     @GetMapping("/getVoteRatioData")
+     public Result<?> getVoteRatioData(String scenicName) {
+         VoteRatioVO voteRatioVO = dataWineShopService.selectVoteRatioAll(scenicName);
+         return Result.ok(voteRatioVO);
+     }
+
+     @ApiOperation("mock每个景区的团散票占比数据")
+     @GetMapping("/getProportionOfGroupsData")
+     public Result<?> getProportionOfGroupsData(String scenicName) {
+         List<ProportionOfGroupsVO> proportionOfGroupsVOS = dataWineShopService.selectProportionOfGroupsAll(scenicName);
+         return Result.ok(proportionOfGroupsVOS);
+     }
+
+     @ApiOperation("mock每个景区的游客信息来源分析数据")
+     @GetMapping("/getTravelInfoData")
+     public Result<?> getTravelInfoData(String scenicName, String startTime, String endTime) {
+         List<ProportionOfGroupsVO> proportionOfGroupsVOS = dataWineShopService.selectTravelInfoAll(scenicName, startTime, endTime);
+         return Result.ok(proportionOfGroupsVOS);
+     }
+
+     @ApiOperation("mock每个景区的项目受欢迎程度数据")
+     @GetMapping("/getScenicProjectData")
+     public Result<?> getScenicProjectData(String scenicName, String startTime, String endTime) {
+         List<ScenicProjectVO> scenicProjectVOS = dataWineShopService.selectScenicProjectAll(scenicName, startTime, endTime);
+         return Result.ok(scenicProjectVOS);
+     }
+
+ }

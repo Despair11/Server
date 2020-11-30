@@ -240,56 +240,59 @@ public class TickPassengersServiceImpl extends ServiceImpl<TickPassengersMapper,
         List<ScenicInfo> scenicInfos = scenicInfoMapper.selectList(Wrappers.<ScenicInfo>query().lambda().eq(ScenicInfo::getScenicName, scenicName));
         if(! redisTemplate.hasKey(RedisKeyConfig.various_scenic_spots_key + scenicInfos.get(0).getId())) {
             //获取今日游客数据
-            List<TicketOrderDetail> ticketOrderDetails = tickPassengersMapper.selectSumTourist(scenicInfos.get(0).getScenicCode());
-           int i = 0;
-            for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails) {
-                i += ticketOrderDetail.getUseCount();
+            if(CollectionUtils.isNotEmpty(scenicInfos)) {
+                List<TicketOrderDetail> ticketOrderDetails = tickPassengersMapper.selectSumTourist(scenicInfos.get(0).getScenicCode());
+                int i = 0;
+                for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails) {
+                    i += ticketOrderDetail.getUseCount();
+                }
+                //获取上个月游客数据
+                List<TicketOrderDetail> ticketOrderDetails1 = tickPassengersMapper.lastMonthVisitorData(scenicInfos.get(0).getScenicCode(), DateUtil.comDate(1));
+                int j = 0;
+                for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails1) {
+                    j += ticketOrderDetail.getUseCount();
+                }
+                dataOrderCheckRecordVO.setType("今日接待游客人数");
+                dataOrderCheckRecordVO.setPeople(i);
+                Double division = ArithmeticUtil.division(i, j);
+                dataOrderCheckRecordVO.setFlagNumber(division);
+                int k = division.compareTo(1.00);
+                if(k < 0) {
+                    dataOrderCheckRecordVO.setFlag(1);
+                } else if(k > 0) {
+                    dataOrderCheckRecordVO.setFlag(2);
+                } else {
+                    dataOrderCheckRecordVO.setFlag(3);
+                }
+                dataOrderCheckRecordVOS.add(dataOrderCheckRecordVO);
+                //获取今年游客数据
+                List<TicketOrderDetail> ticketOrderDetails2 = tickPassengersMapper.selectSumTouristYear(scenicInfos.get(0).getScenicCode());
+                int l = 0;
+                for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails2) {
+                    l += ticketOrderDetail.getUseCount();
+                }
+                //获取去年游客数据
+                List<TicketOrderDetail> ticketOrderDetails3 = tickPassengersMapper.lastMonthVisitorYearData(scenicInfos.get(0).getScenicCode(), DateUtil.comYear(1));
+                int m = 0;
+                for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails3) {
+                    m += ticketOrderDetail.getUseCount();
+                }
+                dataOrderCheckRecordVO1.setType("今年累计接待游客");
+                dataOrderCheckRecordVO1.setPeople(l);
+                Double division1 = ArithmeticUtil.division(l, m);
+                dataOrderCheckRecordVO1.setFlagNumber(division1);
+                int i1 = division1.compareTo(1.00);
+                if(i1 < 0) {
+                    dataOrderCheckRecordVO1.setFlag(1);
+                } else if(i1 > 0) {
+                    dataOrderCheckRecordVO1.setFlag(2);
+                } else {
+                    dataOrderCheckRecordVO1.setFlag(3);
+                }
+                dataOrderCheckRecordVOS.add(dataOrderCheckRecordVO1);
+                redisTemplate.opsForValue().set(RedisKeyConfig.various_scenic_spots_key + scenicInfos.get(0).getId(), JSONArray.toJSONString(dataOrderCheckRecordVOS), RedisKeyConfig.effective_time, TimeUnit.SECONDS);
             }
-            //获取上个月游客数据
-            List<TicketOrderDetail> ticketOrderDetails1 = tickPassengersMapper.lastMonthVisitorData(scenicInfos.get(0).getScenicCode(), DateUtil.comDate(1));
-            int j = 0;
-            for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails1) {
-                j += ticketOrderDetail.getUseCount();
-            }
-            dataOrderCheckRecordVO.setType("今日接待游客人数");
-            dataOrderCheckRecordVO.setPeople(i);
-            Double division = ArithmeticUtil.division(i, j);
-            dataOrderCheckRecordVO.setFlagNumber(division);
-            int k = division.compareTo(1.00);
-            if(k < 0) {
-                dataOrderCheckRecordVO.setFlag(1);
-            } else if(k > 0) {
-                dataOrderCheckRecordVO.setFlag(2);
-            } else {
-                dataOrderCheckRecordVO.setFlag(3);
-            }
-            dataOrderCheckRecordVOS.add(dataOrderCheckRecordVO);
-            //获取今年游客数据
-            List<TicketOrderDetail> ticketOrderDetails2 = tickPassengersMapper.selectSumTouristYear(scenicInfos.get(0).getScenicCode());
-            int l = 0;
-            for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails2) {
-                l += ticketOrderDetail.getUseCount();
-            }
-            //获取去年游客数据
-            List<TicketOrderDetail> ticketOrderDetails3 = tickPassengersMapper.lastMonthVisitorYearData(scenicInfos.get(0).getScenicCode(), DateUtil.comYear(1));
-            int m = 0;
-            for (TicketOrderDetail ticketOrderDetail : ticketOrderDetails3) {
-                m += ticketOrderDetail.getUseCount();
-            }
-            dataOrderCheckRecordVO1.setType("今年累计接待游客");
-            dataOrderCheckRecordVO1.setPeople(l);
-            Double division1 = ArithmeticUtil.division(l, m);
-            dataOrderCheckRecordVO1.setFlagNumber(division1);
-            int i1 = division1.compareTo(1.00);
-            if(i1 < 0) {
-                dataOrderCheckRecordVO1.setFlag(1);
-            } else if(i1 > 0) {
-                dataOrderCheckRecordVO1.setFlag(2);
-            } else {
-                dataOrderCheckRecordVO1.setFlag(3);
-            }
-            dataOrderCheckRecordVOS.add(dataOrderCheckRecordVO1);
-            redisTemplate.opsForValue().set(RedisKeyConfig.various_scenic_spots_key + scenicInfos.get(0).getId(), JSONArray.toJSONString(dataOrderCheckRecordVOS), RedisKeyConfig.effective_time, TimeUnit.SECONDS);
+
         } else {
             Object o = redisTemplate.opsForValue().get(RedisKeyConfig.various_scenic_spots_key + scenicInfos.get(0).getId());
             if(null != o) {
