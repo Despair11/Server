@@ -154,7 +154,7 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
     }
 
     @Override
-    public List<String> selectFocusOnHotSpotsAll() {
+    public List<String> selectFocusOnHotSpotsAll(String scenicName) {
         List<String> list = new ArrayList<>();
         list.add("火星基地");
         list.add("羊肉串");
@@ -368,6 +368,18 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
             scenicProjectVOS.add(scenicProjectVO);
         }
         return scenicProjectVOS;
+    }
+
+    @Override
+    public List<String> selectAllScenicSpot() {
+        List<String> list = new ArrayList<>();
+        list.add("文创园");
+        list.add("天山庙");
+        list.add("全部");
+        list.add("鸣沙山");
+        list.add("大海道");
+
+        return list;
     }
 
 }

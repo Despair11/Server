@@ -179,8 +179,8 @@ public class DataWineShopController extends JeecgController<DataWineShop, IDataW
 
      @ApiOperation("mock关注热词数据")
      @GetMapping("/getFocusOnHotSpotsData")
-     public Result<?> getFocusOnHotSpotsData() {
-         List<String> list = dataWineShopService.selectFocusOnHotSpotsAll();
+     public Result<?> getFocusOnHotSpotsData(String scenicName) {
+         List<String> list = dataWineShopService.selectFocusOnHotSpotsAll(scenicName);
          return Result.ok(list);
      }
 
@@ -218,6 +218,14 @@ public class DataWineShopController extends JeecgController<DataWineShop, IDataW
      public Result<?> getScenicProjectData(String scenicName, String startTime, String endTime) {
          List<ScenicProjectVO> scenicProjectVOS = dataWineShopService.selectScenicProjectAll(scenicName, startTime, endTime);
          return Result.ok(scenicProjectVOS);
+     }
+
+
+     @ApiOperation("mock所有景区名称数据")
+     @GetMapping("/getScenicSpotData")
+     public Result<?> getScenicSpotData() {
+         List<String> list = dataWineShopService.selectAllScenicSpot();
+         return Result.ok(list);
      }
 
  }

@@ -43,7 +43,7 @@ public interface IDataWineShopService extends IService<DataWineShop> {
      * mock关注热点数据
      * @return
      */
-    List<String> selectFocusOnHotSpotsAll();
+    List<String> selectFocusOnHotSpotsAll(String scenicName);
 
 
     /**
@@ -84,4 +84,11 @@ public interface IDataWineShopService extends IService<DataWineShop> {
      * @return
      */
     List<ScenicProjectVO> selectScenicProjectAll(String scenicName, String startTime, String endTime);
+
+
+    /**
+     * 获取景区名称
+     * @return
+     */
+    List<String> selectAllScenicSpot();
 }
