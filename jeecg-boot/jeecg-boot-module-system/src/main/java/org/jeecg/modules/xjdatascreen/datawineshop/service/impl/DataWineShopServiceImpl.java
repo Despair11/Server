@@ -208,14 +208,14 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
 
         touristSatisfactionVOS.add(touristSatisfactionVO);
 
-
+        List<TouristSatisfactionVO.DataService> dataServices1 = new ArrayList<>();
         TouristSatisfactionVO touristSatisfactionVO1 = new TouristSatisfactionVO();
         touristSatisfactionVO1.setMouth("上月");
         TouristSatisfactionVO.DataService dataService6 = new TouristSatisfactionVO.DataService();
         dataService6.setSort("服务");
         dataService6.setData("50%");
-        dataServices.add(dataService6);
-        touristSatisfactionVO1.setDataServices(dataServices);
+        dataServices1.add(dataService6);
+        touristSatisfactionVO1.setDataServices(dataServices1);
 
         TouristSatisfactionVO.DataService dataService7 = new TouristSatisfactionVO.DataService();
         dataService7.setSort("交通");
@@ -226,26 +226,26 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
         TouristSatisfactionVO.DataService dataService8 = new TouristSatisfactionVO.DataService();
         dataService8.setSort("导游");
         dataService8.setData("38%");
-        dataServices.add(dataService8);
-        touristSatisfactionVO1.setDataServices(dataServices);
+        dataServices1.add(dataService8);
+        touristSatisfactionVO1.setDataServices(dataServices1);
 
         TouristSatisfactionVO.DataService dataService9 = new TouristSatisfactionVO.DataService();
         dataService9.setSort("餐饮");
         dataService9.setData("70%");
-        dataServices.add(dataService9);
-        touristSatisfactionVO1.setDataServices(dataServices);
+        dataServices1.add(dataService9);
+        touristSatisfactionVO1.setDataServices(dataServices1);
 
         TouristSatisfactionVO.DataService dataService10 = new TouristSatisfactionVO.DataService();
         dataService10.setSort("卫生");
         dataService10.setData("60%");
-        dataServices.add(dataService10);
-        touristSatisfactionVO1.setDataServices(dataServices);
+        dataServices1.add(dataService10);
+        touristSatisfactionVO1.setDataServices(dataServices1);
 
         TouristSatisfactionVO.DataService dataService11 = new TouristSatisfactionVO.DataService();
         dataService11.setSort("设施");
         dataService11.setData("50%");
-        dataServices.add(dataService11);
-        touristSatisfactionVO1.setDataServices(dataServices);
+        dataServices1.add(dataService11);
+        touristSatisfactionVO1.setDataServices(dataServices1);
 
         touristSatisfactionVOS.add(touristSatisfactionVO1);
 
