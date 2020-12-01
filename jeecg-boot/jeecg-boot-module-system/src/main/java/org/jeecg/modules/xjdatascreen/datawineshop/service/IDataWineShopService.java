@@ -91,4 +91,12 @@ public interface IDataWineShopService extends IService<DataWineShop> {
      * @return
      */
     List<String> selectAllScenicSpot();
+
+
+    /**
+     * mock景区热力图数据
+     * @param scenicName
+     * @return
+     */
+    List<ParkHeatMapVO> selectHeatMapAll(String scenicName);
 }

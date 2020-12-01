@@ -381,4 +381,37 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
         return list;
     }
 
+    @Override
+    public List<ParkHeatMapVO> selectHeatMapAll(String scenicName) {
+        List<ParkHeatMapVO> parkHeatMapVOS = new ArrayList<>();
+
+
+        ParkHeatMapVO parkHeatMapVO = new ParkHeatMapVO();
+        parkHeatMapVO.setLongitude("22.334");
+        parkHeatMapVO.setDimension("25.33");
+        parkHeatMapVO.setPeople(300);
+        parkHeatMapVOS.add(parkHeatMapVO);
+
+
+        ParkHeatMapVO parkHeatMapVO1 = new ParkHeatMapVO();
+        parkHeatMapVO1.setLongitude("33.334");
+        parkHeatMapVO1.setDimension("16.33");
+        parkHeatMapVO1.setPeople(400);
+        parkHeatMapVOS.add(parkHeatMapVO1);
+
+
+        ParkHeatMapVO parkHeatMapVO2 = new ParkHeatMapVO();
+        parkHeatMapVO2.setLongitude("16.34");
+        parkHeatMapVO2.setDimension("12.57");
+        parkHeatMapVO2.setPeople(600);
+        parkHeatMapVOS.add(parkHeatMapVO2);
+
+
+
+
+
+
+        return parkHeatMapVOS;
+    }
+
 }

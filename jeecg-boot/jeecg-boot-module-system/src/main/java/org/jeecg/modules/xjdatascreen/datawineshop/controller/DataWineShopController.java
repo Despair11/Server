@@ -228,4 +228,12 @@ public class DataWineShopController extends JeecgController<DataWineShop, IDataW
          return Result.ok(list);
      }
 
+
+     @ApiOperation("mock各个景区热力图数据")
+     @GetMapping("/geHeatMapData")
+     public Result<?> geHeatMapData(String scenicName) {
+         List<ParkHeatMapVO> parkHeatMapVOS = dataWineShopService.selectHeatMapAll(scenicName);
+         return Result.ok(parkHeatMapVOS);
+     }
+
  }
