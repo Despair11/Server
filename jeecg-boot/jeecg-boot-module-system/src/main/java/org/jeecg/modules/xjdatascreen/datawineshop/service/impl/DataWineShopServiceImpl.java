@@ -375,7 +375,6 @@ public class DataWineShopServiceImpl extends ServiceImpl<DataWineShopMapper, Dat
         List<String> list = new ArrayList<>();
         list.add("文创园");
         list.add("天山庙");
-        list.add("全部");
         list.add("鸣沙山");
         list.add("大海道");
 
