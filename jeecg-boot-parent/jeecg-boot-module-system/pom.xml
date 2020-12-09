@@ -38,7 +38,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>hami-server</finalName>
+		<finalName>anchu-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
