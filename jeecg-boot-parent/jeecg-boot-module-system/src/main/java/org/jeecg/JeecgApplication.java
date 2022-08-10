@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 
 import org.apache.catalina.Context;
 import org.apache.tomcat.util.scan.StandardJarScanner;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 @EnableAutoConfiguration
+@MapperScan("org.jeecg.modules.bigscreen.mapper")
 public class JeecgApplication {
 
   public static void main(String[] args) throws UnknownHostException {
